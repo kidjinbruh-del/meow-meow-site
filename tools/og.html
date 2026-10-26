@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../assets/css/fonts.css">
+  <style>
+    :root { --paper:#f4efe6; --brand:#16211e; --amber:#b8792b; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; width: 1200px; height: 630px; overflow: hidden;
+      font-family: "Golos Text", sans-serif;
+      background:
+        radial-gradient(700px 420px at 88% 6%, rgba(220,231,225,.18), transparent 62%),
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px) 0 0 / 100% 52px,
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px) 0 0 / 52px 100%,
+        var(--brand);
+      color: var(--paper);
+    }
+    .og { position: relative; height: 100%; padding: 58px 64px; display: flex; }
+    .og__left { width: 58%; position: relative; z-index: 2; }
+    .brand { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+    .brand img { width: 40px; height: 40px; }
+    h1 { margin: 54px 0 18px; font-size: 86px; line-height: .94; letter-spacing: -.05em; font-weight: 800; }
+    h1 em { font-style: normal; position: relative; display: inline-block; }
+    h1 em::after {
+      content: ""; position: absolute; left: -2%; right: -2%; bottom: -14px; height: 7px;
+      background: var(--amber); border-radius: 99px; transform: rotate(-1.2deg); opacity: .9;
+    }
+    p { margin: 40px 0 0; font-size: 25px; line-height: 1.4; color: rgba(244,239,230,.72); max-width: 520px; }
+    .meta { margin-top: 34px; font-family: "JetBrains Mono", monospace; font-size: 15px; letter-spacing: .06em; color: rgba(244,239,230,.55); }
+    .pill {
+      display: inline-block; margin-top: 22px; padding: 9px 16px; border-radius: 999px;
+      border: 1px solid rgba(220,231,225,.28); background: rgba(255,255,255,.05);
+      font-size: 15px; color: rgba(244,239,230,.82);
+    }
+    .og__right { position: absolute; right: 34px; top: 58px; width: 344px; height: 610px; overflow: hidden;
+      border-radius: 32px; border: 10px solid #0d1412; box-shadow: 0 50px 90px -40px rgba(0,0,0,.9);
+      transform: rotate(-3deg); transform-origin: 50% 0;
+    }
+    .og__right img { display: block; width: 100%; }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div class="og__left">
+      <div class="brand"><img src="../assets/favicon.svg" alt="">meow meow записи</div>
+      <h1>Ремонт<br><em>без бумажек</em></h1>
+      <p>Заказы, диагностика, запчасти и фото.<br>Android, офлайн, без аккаунта.</p>
+      <div class="meta">APK · ANDROID 7+ · 10,4 МБ</div>
+      <div><span class="pill">Без интернета и аккаунта</span></div>
+    </div>
+    <div class="og__right">
+      <img src="../assets/img/screen-orders.png" alt="">
+    </div>
+  </div>
+</body>
+</html>

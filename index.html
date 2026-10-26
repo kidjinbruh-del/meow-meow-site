@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meow meow записи — заказы и ремонт бытовой техники</title>
+  <meta name="description" content="Приложение для мастера по ремонту бытовой техники: заказы, чек-лист диагностики, запчасти, заметки и фото. Android, офлайн, без аккаунта.">
+  <meta name="theme-color" content="#F4EFE6">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kidjinbruh-del.github.io/meow-meow-site/">
+  <meta property="og:title" content="meow meow записи — ремонт без бумажек">
+  <meta property="og:description" content="Карточка ремонта за минуту: модель, клиент, симптом, чек-лист, запчасти и фото. Всё на телефоне, без интернета.">
+  <meta property="og:image" content="https://kidjinbruh-del.github.io/meow-meow-site/assets/img/og.png">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="meow meow записи — ремонт без бумажек">
+  <meta name="twitter:description" content="Заказы, диагностика, запчасти и фото в одном Android-приложении. Офлайн.">
+  <meta name="twitter:image" content="https://kidjinbruh-del.github.io/meow-meow-site/assets/img/og.png">
+
+  <link rel="canonical" href="https://kidjinbruh-del.github.io/meow-meow-site/">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/golos-text-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/golos-text-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "meow meow записи",
+    "operatingSystem": "Android 7.0+",
+    "applicationCategory": "BusinessApplication",
+    "description": "Приложение для мастера по ремонту бытовой техники: заказы, чек-лист диагностики, запчасти, заметки и фото.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+    "softwareVersion": "1.0.0",
+    "downloadUrl": "https://github.com/kidjinbruh-del/meow-meow-zapisi/releases/latest/download/meow-meow-zapisi-1.0.apk",
+    "license": "https://github.com/kidjinbruh-del/meow-meow-zapisi/blob/main/LICENSE"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Перейти к содержимому</a>
+
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-list" viewBox="0 0 24 24">
+        <path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1.2"/><circle cx="4" cy="12" r="1.2"/><circle cx="4" cy="18" r="1.2"/>
+      </symbol>
+      <symbol id="i-card" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h7M7 13h10M7 17h5"/>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="m8 12.5 2.7 2.7L16.5 9"/>
+      </symbol>
+      <symbol id="i-part" viewBox="0 0 24 24">
+        <path d="M14.7 6.3a4.5 4.5 0 0 0-5.8 5.8l-5 5a2 2 0 0 0 2.8 2.8l5-5a4.5 4.5 0 0 0 5.8-5.8l-2.6 2.6-2.1-.5-.5-2.1 2.4-2.8Z"/>
+      </symbol>
+      <symbol id="i-note" viewBox="0 0 24 24">
+        <path d="M6 3.5h9.5L20 8v12.5H6z"/><path d="M15 3.5V8h4.5M9 12h6M9 16h4"/>
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <path d="M4 8h3.2l1.4-2h6.8l1.4 2H20v11H4z"/><circle cx="12" cy="13" r="3.4"/>
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3.5v11m0 0 4-4m-4 4-4-4M4.5 19.5h15"/>
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M5 12h13m0 0-5-5m5 5-5 5"/>
+      </symbol>
+      <symbol id="i-github" viewBox="0 0 24 24">
+        <path fill="currentColor" stroke="none" d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/>
+      </symbol>
+      <symbol id="i-offline" viewBox="0 0 24 24">
+        <path d="M3 3l18 18M9.5 16.5a3.5 3.5 0 0 1 5 0M6 13a8 8 0 0 1 3-1.9M18 13a8 8 0 0 0-2.2-1.5M2.8 9.3A12 12 0 0 1 7 6.7M21.2 9.3A12 12 0 0 0 12 6c-.6 0-1.2.05-1.8.15"/>
+      </symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24">
+        <rect x="4.5" y="10" width="15" height="10.5" rx="3"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/>
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="m9 7-5 5 5 5M15 7l5 5-5 5"/>
+      </symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24">
+        <path d="M12 3 5 6v5.5c0 4.4 3 7.6 7 9.5 4-1.9 7-5.1 7-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/>
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18"/>
+      </symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="11" height="12" rx="2.5"/><path d="M5.5 16H5a1.5 1.5 0 0 1-1.5-1.5v-9A1.5 1.5 0 0 1 5 4h9A1.5 1.5 0 0 1 15.5 5.5V6"/>
+      </symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24">
+        <path d="m7 10 5 5 5-5"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="meow meow записи — на главную">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><use href="#paw-mark"/></svg>
+        </span>
+        <span class="brand__text">meow meow записи</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Основная навигация">
+        <a href="#features">Возможности</a>
+        <a href="#how">Как работает</a>
+        <a href="#screens">Скриншоты</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a class="icon-link" href="https://github.com/kidjinbruh-del/meow-meow-zapisi" target="_blank" rel="noopener" aria-label="Репозиторий на GitHub">
+          <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+        </a>
+        <a class="btn btn--small btn--primary" href="https://github.com/kidjinbruh-del/meow-meow-zapisi/releases/latest/download/meow-meow-zapisi-1.0.apk">
+          <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+          <span>Скачать APK</span>
+        </a>
+        <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Открыть меню">
+          <svg class="icon nav__icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon nav__icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav__panel" id="nav-panel" hidden>
+      <a href="#features">Возможности</a>
+      <a href="#how">Как работает</a>
+      <a href="#screens">Скриншоты</a>
+      <a href="#faq">Вопросы</a>
+      <a href="https://github.com/kidjinbruh-del/meow-meow-zapisi" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow reveal"><span class="eyebrow__dot" aria-hidden="true"></span>Android · офлайн · бесплатно</p>
+          <h1 class="reveal">Ремонт<br><span class="marked">без бумажек<svg class="marked__line" viewBox="0 0 300 18" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12c48-7 104-9 160-6 44 2 86 6 134 2"/></svg></span></h1>
+          <p class="hero__lead reveal">Карточка ремонта за минуту: модель, клиент и симптом, чек-лист диагностики, запчасти, заметки и фото. Всё хранится на телефоне — интернет не нужен.</p>
+
+          <div class="actions reveal">
+            <a class="btn btn--primary" href="https://github.com/kidjinbruh-del/meow-meow-zapisi/releases/latest/download/meow-meow-zapisi-1.0.apk">
+              <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+              Скачать APK
+            </a>
+            <a class="btn btn--ghost" href="https://github.com/kidjinbruh-del/meow-meow-zapisi" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+              Открыть на GitHub
+            </a>
+          </div>
+
+          <p class="hero__meta reveal">Android 7+ · 10,4 МБ · версия 1.0.0</p>
+
+          <ul class="chips reveal" aria-label="Коротко о приложении">
+            <li>Без аккаунта</li>
+            <li>Без рекламы</li>
+            <li>Без интернета</li>
+          </ul>
+        </div>
+
+        <div class="hero__art reveal" aria-hidden="false">
+          <div class="phone phone--back" aria-hidden="true">
+            <img src="assets/img/screen-order.png" alt="" width="720" height="1612" loading="eager" decoding="async">
+          </div>
+          <div class="phone phone--main">
+            <img src="assets/img/screen-orders.png" alt="Список заказов в приложении: три ремонта со статусами «В работе», «Ждет запчасть» и «Готово»" width="720" height="1612" loading="eager" decoding="async">
+          </div>
+          <div class="float float--check">
+            <span class="float__tick" aria-hidden="true">✓</span>
+            <span><b>2 из 3</b> проверено</span>
+          </div>
+          <div class="float float--status">
+            <span class="float__dot" aria-hidden="true"></span>
+            Ждет запчасть
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Ключевые свойства">
+      <div class="wrap strip__grid">
+        <div class="strip__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-offline"/></svg>
+          <span>Работает без сети</span>
+        </div>
+        <div class="strip__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+          <span>Данные только на телефоне</span>
+        </div>
+        <div class="strip__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-code"/></svg>
+          <span>Открытый исходный код</span>
+        </div>
+        <div class="strip__item">
+          <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+          <span>Ни рекламы, ни аналитики</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>01 / Проблема</p>
+          <h2>Пока ремонт в голове — <span class="soft">что-то теряется</span></h2>
+          <p class="lead">Три места, где обычно и заканчивается порядок: заметки, память и галерея.</p>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--problem reveal">
+            <span class="card__index">01</span>
+            <h3>Записи на чеках и в переписке</h3>
+            <p>Модель, симптом и договорённости разбросаны по заметкам. Через неделю уже не вспомнить, что обещали клиенту.</p>
+          </article>
+          <article class="card card--problem reveal">
+            <span class="card__index">02</span>
+            <h3>Забыл, что уже проверил</h3>
+            <p>Приходится разбирать заново или звонить клиенту. Диагностика не фиксируется, опыт не копится.</p>
+          </article>
+          <article class="card card--problem reveal">
+            <span class="card__index">03</span>
+            <h3>Фото тонут в галерее</h3>
+            <p>Снимки маркировки и плат лежат среди мемов и скриншотов. К конкретному заказу они не привязаны.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="features">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>02 / Возможности</p>
+          <h2>Один экран на ремонт, <span class="soft">ничего лишнего</span></h2>
+          <p class="lead">Список заказов и карточка, в которой есть всё для работы: от симптома до купленной детали.</p>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg></span>
+            <h3>Список заказов</h3>
+            <p>Карточки со статусом, моделью и клиентом. Поиск по симптому и фильтры — нужный ремонт находится за пару секунд.</p>
+          </article>
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg></span>
+            <h3>Карточка ремонта</h3>
+            <p>Модель, клиент, контакт и проблема со слов клиента. Всё на одном экране, без переходов по меню.</p>
+          </article>
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <h3>Чек-лист диагностики</h3>
+            <p>Три типовые проверки уже внутри. Добавляйте свои и отмечайте, что исключили.</p>
+          </article>
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-part"/></svg></span>
+            <h3>Запчасти</h3>
+            <p>Название, количество и статус «куплено». Видно, что заказано, а что ещё искать.</p>
+          </article>
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-note"/></svg></span>
+            <h3>Заметки</h3>
+            <p>«Купил аналог, не подошел» — сохраняется само. Ничего не потеряется при выходе с экрана.</p>
+          </article>
+          <article class="card card--feature reveal">
+            <span class="card__icon"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg></span>
+            <h3>Фото</h3>
+            <p>Снимите маркировку, плату или сломанную деталь. Снимки привязаны к заказу, а не к галерее.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>03 / Как работает</p>
+          <h2>Три шага <span class="soft">до закрытого заказа</span></h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3>Создайте заказ</h3>
+            <p>Одна кнопка — и карточка уже в базе. Три типовые проверки добавлены автоматически.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3>Заполняйте по ходу</h3>
+            <p>Симптом, статус, чек-лист, детали и фото. Текст сохраняется сам, без кнопки «Сохранить».</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3>Закройте ремонт</h3>
+            <p>Статус «Готово» — и заказ остаётся в истории. Удаление убирает и фотографии.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--tint" id="screens">
+      <div class="wrap">
+        <div class="section__head">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>04 / Скриншоты</p>
+          <h2>Так это выглядит <span class="soft">на телефоне</span></h2>
+          <p class="lead">Реальные экраны release-сборки. Нажмите, чтобы открыть крупнее.</p>
+        </div>
+
+        <div class="shots">
+          <button class="shot reveal" type="button" data-full="assets/img/screen-orders.png" data-caption="Список заказов">
+            <span class="shot__frame"><img src="assets/img/screen-orders.png" alt="Список заказов" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Список заказов</b><span>Статусы, поиск и фильтры</span></span>
+          </button>
+          <button class="shot reveal" type="button" data-full="assets/img/screen-order.png" data-caption="Карточка ремонта">
+            <span class="shot__frame"><img src="assets/img/screen-order.png" alt="Карточка ремонта" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Карточка ремонта</b><span>Модель, клиент, симптом</span></span>
+          </button>
+          <button class="shot reveal" type="button" data-full="assets/img/screen-checklist.png" data-caption="Что проверено">
+            <span class="shot__frame"><img src="assets/img/screen-checklist.png" alt="Чек-лист диагностики" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Что проверено</b><span>Чек-лист с подсказками</span></span>
+          </button>
+          <button class="shot reveal" type="button" data-full="assets/img/screen-parts.png" data-caption="Запчасти и заметки">
+            <span class="shot__frame"><img src="assets/img/screen-parts.png" alt="Запчасти и заметки" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Запчасти и заметки</b><span>Что купить и что уже куплено</span></span>
+          </button>
+          <button class="shot reveal" type="button" data-full="assets/img/screen-new.png" data-caption="Новый заказ">
+            <span class="shot__frame"><img src="assets/img/screen-new.png" alt="Новый заказ" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Новый заказ</b><span>Три проверки уже внутри</span></span>
+          </button>
+          <button class="shot reveal" type="button" data-full="assets/img/screen-empty.png" data-caption="Пустой список">
+            <span class="shot__frame"><img src="assets/img/screen-empty.png" alt="Пустой список заказов" width="720" height="1612" loading="lazy" decoding="async"></span>
+            <span class="shot__caption"><b>Пустой список</b><span>Понятное начало</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <div class="wrap privacy__grid">
+        <div>
+          <p class="eyebrow eyebrow--light"><span class="eyebrow__dot" aria-hidden="true"></span>05 / Приватность</p>
+          <h2 class="privacy__title">Всё остаётся<br>на телефоне</h2>
+          <p class="privacy__lead">Ни аккаунта, ни облака, ни аналитики. База SQLite и фотографии лежат в приватной папке приложения: их не видит ни система, ни другие приложения. В манифесте нет разрешения <code>INTERNET</code>.</p>
+
+          <ul class="privacy__list">
+            <li>
+              <b>SQLite (Room), режим WAL</b>
+              <span>Заказы, чек-листы, запчасти и фото</span>
+            </li>
+            <li>
+              <b><code>files/photos</code></b>
+              <span>JPEG внутри приложения, а не в галерее</span>
+            </li>
+            <li>
+              <b>0 разрешений</b>
+              <span>Камера — системная, галерея — через Photo Picker</span>
+            </li>
+            <li>
+              <b>MIT</b>
+              <span>Исходники открыты: можно собрать самому</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="db-card" aria-label="Структура базы данных">
+          <div class="db-card__bar">
+            <span class="db-card__dot" aria-hidden="true"></span>
+            <span class="db-card__name">meow-meow-notes.db</span>
+            <span class="db-card__badge">v1</span>
+          </div>
+          <div class="db-card__body">
+            <div class="db-row"><span class="db-row__table">orders</span><span class="db-row__count">9 полей</span></div>
+            <div class="db-row"><span class="db-row__table">checklist_items</span><span class="db-row__count">5 · FK</span></div>
+            <div class="db-row"><span class="db-row__table">parts</span><span class="db-row__count">6 · FK</span></div>
+            <div class="db-row"><span class="db-row__table">photos</span><span class="db-row__count">5 · FK</span></div>
+            <div class="db-card__sql">
+              <span class="db-card__prompt">sqlite&gt;</span> PRAGMA foreign_keys = ON;<br>
+              <span class="db-card__ok">— ON DELETE CASCADE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="wrap wrap--narrow">
+        <div class="section__head">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>06 / Вопросы</p>
+          <h2>Коротко <span class="soft">о главном</span></h2>
+        </div>
+
+        <div class="faq">
+          <details class="faq__item" open>
+            <summary>Нужен ли интернет?</summary>
+            <div class="faq__answer"><p>Нет. Приложение не запрашивает разрешение <code>INTERNET</code>: заказы, фото и заметки хранятся локально и доступны в подвале или у клиента за городом.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Где лежат фотографии?</summary>
+            <div class="faq__answer"><p>В приватной папке <code>files/photos</code> внутри приложения. В системную галерею они не попадают и не смешиваются с личными снимками.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Почему APK, а не Google Play?</summary>
+            <div class="faq__answer"><p>Приложение распространяется напрямую: так обновления выходят быстрее. APK подписан, SHA-256 опубликован в релизе, исходный код открыт.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Что будет при удалении приложения?</summary>
+            <div class="faq__answer"><p>База и фотографии удалятся вместе с ним: отдельного резервного копирования пока нет. Экспорт в ZIP — в планах.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>На каких телефонах работает?</summary>
+            <div class="faq__answer"><p>Android 7.0 и новее. Проверено на TECNO BF7 (Android 12); интерфейс рассчитан на экраны от 360 dp.</p></div>
+          </details>
+          <details class="faq__item">
+            <summary>Можно ли доверять APK?</summary>
+            <div class="faq__answer"><p>Исходный код лежит на GitHub, релиз собран из него. Можно проверить код, собрать APK самостоятельно или сравнить SHA-256 с указанным ниже.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--download" id="download">
+      <div class="wrap">
+        <div class="download">
+          <div class="download__copy">
+            <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>07 / Загрузить</p>
+            <h2>Забрать приложение</h2>
+            <p class="download__lead">Версия 1.0.0 для Android 7+. Установка занимает меньше минуты, аккаунт не нужен.</p>
+            <div class="actions">
+              <a class="btn btn--primary btn--large" href="https://github.com/kidjinbruh-del/meow-meow-zapisi/releases/latest/download/meow-meow-zapisi-1.0.apk">
+                <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                Скачать APK · 10,4 МБ
+              </a>
+              <a class="btn btn--ghost" href="https://github.com/kidjinbruh-del/meow-meow-zapisi/releases/tag/v1.0.0" target="_blank" rel="noopener">
+                Что нового
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+              </a>
+            </div>
+            <p class="download__note">Откройте файл на телефоне и разрешите установку из этого источника.</p>
+          </div>
+
+          <div class="download__sha">
+            <span class="download__sha-label">SHA-256</span>
+            <code id="sha">D6F93ECA9DC31317DC4C7E679D4676FD5E33F6D311A55A36762D21899A2DCE3F</code>
+            <button class="copy" type="button" data-copy="D6F93ECA9DC31317DC4C7E679D4676FD5E33F6D311A55A36762D21899A2DCE3F">
+              <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+              <span>Скопировать</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <span class="brand">
+          <span class="brand__mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64"><use href="#paw-mark"/></svg>
+          </span>
+          <span class="brand__text">meow meow записи</span>
+        </span>
+        <p>Инструмент мастера. Без облака.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Ссылки">
+        <a href="https://github.com/kidjinbruh-del/meow-meow-zapisi" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/kidjinbruh-del/meow-meow-zapisi/releases" target="_blank" rel="noopener">Релизы</a>
+        <a href="https://github.com/kidjinbruh-del/meow-meow-zapisi#readme" target="_blank" rel="noopener">Документация</a>
+      </nav>
+    </div>
+    <div class="wrap footer__bottom">
+      <span>© <span id="year">2026</span> meow meow записи</span>
+      <span>MIT · Kotlin, Jetpack Compose, Room</span>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр скриншота" hidden>
+    <button class="lightbox__close" type="button" aria-label="Закрыть">
+      <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Предыдущий скриншот">←</button>
+    <figure class="lightbox__figure">
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Следующий скриншот">→</button>
+  </div>
+
+  <svg class="paw-defs" aria-hidden="true" focusable="false">
+    <symbol id="paw-mark" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="14" fill="#2C4A45"/>
+      <path fill="#F4EFE6" d="M32 36c7.2 0 12.6 4.8 12.6 10.1 0 5-4.6 7.5-12.6 7.5s-12.6-2.5-12.6-7.5C19.4 40.8 24.8 36 32 36Z"/>
+      <circle fill="#F4EFE6" cx="22.5" cy="29.5" r="4.7"/>
+      <circle fill="#F4EFE6" cx="29.4" cy="23.8" r="4.3"/>
+      <circle fill="#F4EFE6" cx="36.6" cy="23.8" r="4.3"/>
+      <circle fill="#F4EFE6" cx="43.5" cy="29.5" r="4.7"/>
+    </symbol>
+  </svg>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
